@@ -1,0 +1,6 @@
+#!/bin/bash
+cd PWD
+eval `scramv1 runtime -sh`
+export X509_USER_PROXY=/afs/cern.ch/user/k/kmondal/.globus/x509up_u58614
+cmsRun step1_INDEX_cfg.py > PWD/log/step1_INDEX.runlog 2>&1
+exit $?

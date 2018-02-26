@@ -16,17 +16,17 @@ process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff')
 process.load('DQMOffline.Configuration.DQMOffline_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
-process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
+process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(100)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
   secondaryFileNames = cms.untracked.vstring(),
   fileNames = cms.untracked.vstring([
-     '/store/relval/CMSSW_7_4_0_pre5/RelValZEE_13/GEN-SIM-RECO/PU50ns_MCRUN2_73_V6-v1/00000/2A3A05D7-BFA0-E411-A89D-00261894395F.root'
+            '/store/relval/CMSSW_9_2_3/RelValZMM_13/GEN-SIM-RECO/PUpmx25ns_92X_upgrade2017_realistic_v2_earlyBS2017-v1/10000/1A171A5A-4D51-E711-B321-0025905A6084.root'
   ])
 )
 
@@ -56,11 +56,11 @@ process.DQMoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, 'START71_V8A::All', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '92X_upgrade2017_realistic_v2', '')
 
 # Tracker Data MC validation suite
 process.load('DQM.TrackingMonitorSource.TrackingDataMCValidation_Standalone_cff')
-process.analysis_step = cms.Path(  process.standaloneValidationElec)
+process.analysis_step = cms.Path(process.standaloneValidationMinbiasMC)
 # Path and EndPath definitions
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.DQMoutput_step = cms.EndPath(process.DQMoutput)

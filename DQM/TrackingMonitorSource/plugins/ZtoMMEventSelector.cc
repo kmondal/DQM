@@ -71,8 +71,7 @@ bool ZtoMMEventSelector::filter(edm::Event& iEvent, edm::EventSetup const& iSetu
 	if (std::fabs(trkdz) >= maxDz_) continue;
       }
       else {
-	edm::LogError("ZtoMMEventSelector") << "Error >> Failed to get BeamSpot for label: "
-					    << bsTag_;
+	edm::LogError("ZtoMMEventSelector") << "Error >> Failed to get BeamSpot for label: " << bsTag_;
       }
 
       const reco::HitPattern& hitp = gtk->hitPattern(); 
@@ -87,7 +86,7 @@ bool ZtoMMEventSelector::filter(edm::Event& iEvent, edm::EventSetup const& iSetu
 
       // PF Isolation      
       const reco::MuonPFIsolation& pfIso04 = mu.pfIsolationR04();
-      double absiso = pfIso04.sumChargedParticlePt + std::max(0.0, pfIso04.sumNeutralHadronEt + pfIso04.sumPhotonEt - 0.5 * pfIso04.sumPUPt);
+      double absiso = pfIso04.sumChargedHadronPt + std::max(0.0, pfIso04.sumNeutralHadronEt + pfIso04.sumPhotonEt - 0.5 * pfIso04.sumPUPt);
       if (absiso/mu.pt() > maxIso_) continue;
 
       TLorentzVector lv;
@@ -105,7 +104,6 @@ bool ZtoMMEventSelector::filter(edm::Event& iEvent, edm::EventSetup const& iSetu
   TLorentzVector zv = list[0] + list[1];
   double mass = zv.M();
   if (mass < minInvMass_ || mass > maxInvMass_) return false;
-    
   return true;
 }
 

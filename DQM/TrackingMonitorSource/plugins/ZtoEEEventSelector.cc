@@ -40,7 +40,7 @@ ZtoEEEventSelector::ZtoEEEventSelector(const edm::ParameterSet& ps):
   maxDz_(ps.getUntrackedParameter<double>("maxDz", 20.)),
   minPixelHits_(ps.getUntrackedParameter<uint32_t>("minPixelHits", 1)),
   minStripHits_(ps.getUntrackedParameter<uint32_t>("minStripHits", 8)),
-  maxIso_(ps.getUntrackedParameter<double>("maxIso", 0.3)),
+  maxIso_(ps.getUntrackedParameter<double>("maxIso", 0.5)),
   minPtHighest_(ps.getUntrackedParameter<double>("minPtHighest", 24)),
   minInvMass_(ps.getUntrackedParameter<double>("minInvMass", 60)),
   maxInvMass_(ps.getUntrackedParameter<double>("maxInvMass", 120))
